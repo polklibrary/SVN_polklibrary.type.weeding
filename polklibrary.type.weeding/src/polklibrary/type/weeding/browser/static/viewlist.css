@@ -1,0 +1,271 @@
+body, html {
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+
+.clear { clear: both; }
+.hleft {
+    float: left;
+}
+.hright {
+    float:right;
+}
+
+#logo {
+    height: 80px;
+    margin: 5px;
+    filter: drop-shadow(2px 2px 1px  #ccc);
+}
+
+
+.login-to-vote{
+    display: block;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    color: white;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 3px;
+    margin: 0 auto;
+}
+
+#bottom-nav {
+    padding: 0 25px 25px 25px;
+}
+
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#nav a{
+    background-color: #5ab4ef;
+    width: 150px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none !important;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px 0px;
+    margin-right: 10px;
+}
+
+#options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    padding: 10px;
+}
+#options div{
+    margin-right: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    font-style: italic;
+}
+
+#options a{
+    background-color: #5ab4ef;
+    width: 150px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none !important;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px 0px;
+    margin-right: 10px;
+}
+
+
+#legend {
+    display: flex;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    margin: 20px;
+    width: 600px;
+}
+#legend > div {
+    display: flex;
+    margin: 10px;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200px;
+}
+#legend > div > span {
+    margin-left: 10px;
+    width: 150px;
+}
+#legend .your-square {
+    width: 20px;
+    height: 20px;
+    background-color: #2d9b3a;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+#legend .others-square {
+    background-color: #a5e8ff;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    display: inline-block;
+}
+#legend .blue-square {
+    background-color: #258cdb;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+#updated {
+    color: #aaa;
+    font-style: italic;
+}
+
+.dataTables_scrollHead {
+    background-color: #ddd;
+}
+#weedlist-table_filter{
+    padding: 10px;
+}
+.dataTables_scroll{
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    border-top-width: 10px;
+}
+
+#weedlist-table_filter label {
+    font-weight: bold;
+}
+
+#weedlist-table_filter input {
+    width: 400px;
+}
+
+#weedlist-table td:nth-child(1) {
+    text-align: center  !important;
+    position: relative;
+}
+#weedlist-table td.saving:nth-child(1):before {
+    color: #333;
+    content: "Saving";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 11px;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeOut 1.75s ease-in 0s;
+}
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+
+#weedlist-table tr[data-heading="false"] td:nth-child(4) {
+    color: black;
+    cursor: pointer;
+    text-decoration: underline !important;
+    position: relative;
+}
+
+#weedlist-table tr[data-heading="false"] td:nth-child(4):hover:before {
+    background-color: #81cfff;
+    border: 1px solid #4fbcff;
+    color: #111;
+    content: "Click to see item";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 120px;
+    position: absolute;
+    top: calc(50% - 10px);
+    right: -115px;
+}
+
+
+
+
+#weedlist-table th:nth-child(2), #weedlist-table td:nth-child(2), .dataTables_scrollHead  table th:nth-child(2) {
+    display:none !important;
+}
+
+#weedlist-table th:nth-child(3), #weedlist-table td:nth-child(3), .dataTables_scrollHead  table th:nth-child(3) {
+    display:none !important;
+}
+
+
+#weedlist-table tr[data-keep] {
+    background-color: #a5e8ff;
+    transition: background-color 0.3s ease;
+}
+#weedlist-table tr[data-keep="0"] {
+    background-color: transparent;
+}
+#weedlist-table tr[data-you] {
+    background-color: #6cdf87;
+    transition: background-color 0.3s ease;
+}
+#weedlist-table tr[data-heading="true"] {
+    background-color: #258cdb;
+    color: #efefef;
+    font-size: 16px;
+    font-weight: bold;
+}
+#weedlist-table tr[data-heading="true"] input[type="checkbox"] {
+    display:none !important;
+}
+
+#weedlist-table tr[data-heading="true"] td {
+    border-right: 0 none !important;
+    color: white;
+}
+
+#weedlist-table td {
+    color: black;
+}
+
+
+
+#weedlist-table tr input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+#weedlist-table tr input[type="checkbox"]:checked:before {
+    background-color: #2d9b3a;
+    content: '✓';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+table.dataTable.stripe>tbody>tr.odd>*, table.dataTable.display>tbody>tr.odd>* {
+     box-shadow: none;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    text-align: center;
+}

@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="polklibrary.type.weeding">
+
+    <adapter
+        for="Products.CMFCore.interfaces.IFolderish
+             zope.publisher.interfaces.browser.IDefaultBrowserLayer
+             plone.dexterity.interfaces.IDexterityFTI"
+        provides="zope.publisher.interfaces.browser.IBrowserPage"
+        factory="polklibrary.type.weeding.models.weedlist.AddView"
+        name="polklibrary.type.weeding.models.weedlist"
+    />
+    <class class="polklibrary.type.weeding.models.weedlist.AddView">
+        <require
+            permission="cmf.AddPortalContent"
+            interface="zope.publisher.interfaces.browser.IBrowserPage"
+            />
+    </class>    
+        
+    <browser:page
+        for="polklibrary.type.weeding.models.weedlist.IWeedList"
+        name="edit"
+        class="polklibrary.type.weeding.models.weedlist.EditForm"
+        permission="cmf.ModifyPortalContent"
+    />
+    
+</configure>

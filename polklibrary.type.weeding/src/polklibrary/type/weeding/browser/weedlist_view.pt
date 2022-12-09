@@ -1,0 +1,198 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone"
+	  lang="en">
+<head>
+
+    <title>Viewing ${context/Title}</title>
+    <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/viewlist.css" />
+    <script type="text/javascript" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery.dataTables.min.js"></script>
+    
+    <script> type="text/javascript">
+    
+        $(document).ready(function () {
+        
+            
+            var tnav_height = $('#top-nav').outerHeight();
+            var bnav_height = $('#bottom-nav').outerHeight();
+            var window_height = $( window ).height();
+            var adjustments_height = 180;
+            
+            var user_id = "${view/current_user_id}";
+            var user_email = "${view/current_user_id}@uwosh.edu";
+        
+            $('#weedlist-table').DataTable({
+                order: [[1, 'asc']],
+                ordering: false,
+                scrollY: (window_height- tnav_height- bnav_height - adjustments_height) + 'px',
+                scrollCollapse: true,
+                paging: false,
+            });
+            
+            // Keep or weed?
+            $('.weed-item input[type="checkbox"]').on('click', function(){
+                var id = $(this).val();
+                if ($(this).is(':checked')){
+                    $.get('${context/absolute_url}/weedlist_update?action=add&id=' + id, function(response){
+                        console.log(response);
+                        if (response.status == 200){
+                            var keep_count = parseInt($('tr[data-id="'+id+'"]').attr('data-keep'));
+                            keep_count++;
+                            $('tr[data-id="'+id+'"]').attr('data-keep', keep_count);
+                            $('tr[data-id="'+id+'"]').attr('data-you', 1);
+                            $('#updated>span').html(response.modified);
+                            $('tr[data-id="'+id+'"] td:first-child').addClass("saving");
+                            setTimeout(function(){
+                                $('tr[data-id="'+id+'"] td:first-child').removeClass("saving");
+                            }, 2000);
+                            
+                        }
+                        else {
+                            alert("Not authenticated.");
+                        }
+                        
+                    });
+                }
+                else {
+                    $.get('${context/absolute_url}/weedlist_update?action=remove&id=' + id, function(response){
+                        console.log(response);
+                        if (response.status == 200){
+                            var keep_count = parseInt($('tr[data-id="'+id+'"]').attr('data-keep'));
+                            keep_count--;
+                            if (keep_count < 0)
+                                keep_count = 0;
+                            $('tr[data-id="'+id+'"]').attr('data-keep', keep_count);
+                            $('tr[data-id="'+id+'"]').removeAttr('data-you');
+                            $('#updated>span').html(response.modified);
+                            $('tr[data-id="'+id+'"] td:first-child').addClass("saving");
+                            setTimeout(function(){
+                                $('tr[data-id="'+id+'"] td:first-child').removeClass("saving");
+                            }, 2000);
+                        }
+                        else {
+                            alert("Not authenticated.");
+                        }
+                    });
+                }
+            });
+            
+            // Search@UW Title Link
+            $('tr[data-heading="false"] td:nth-child(4)').on('click', function(){
+                var cn = $(this).parent().find('td:nth-child(14)').text();
+                var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search?query=any,contains,"$$TARGET$$"&tab=default_tab&search_scope=DN_and_CI&vid=01UWI_OSH:OSH&lang=en&offset=0'
+                window.open(url.replace('$$TARGET$$',cn), '_blank');
+            });
+            
+            // Make headings stretch on table
+            $('tr[data-heading="true"]').each(function(){
+                $(this).find('td:nth-child(4)').attr('colspan', 6);
+                $(this).find('td:nth-child(5)').css('display', 'none');
+                $(this).find('td:nth-child(6)').css('display', 'none');
+                $(this).find('td:nth-child(7)').css('display', 'none');
+                $(this).find('td:nth-child(8)').css('display', 'none');
+                $(this).find('td:nth-child(9)').css('display', 'none');
+            });
+            
+            
+            // Make headings stretch on table
+            $('td input[checked="true"').each(function(){
+            
+                $(this).parents('tr').attr('data-you', 1);
+            
+            });
+            
+            
+            
+            
+            
+            
+        });   
+    </script>
+    
+</head>
+<body>
+
+
+    <div id="weedlist-page" tal:define="userid view/current_user_id; useremail python:view.current_user_id + '@uwosh.edu'">
+    
+        <div id="top-nav">
+            <div class="hleft">
+                <div id="legend">
+                    <div> <div class="your-square">✓</div> <span>You requested to be kept.</span></div>
+                    <div> <div class="others-square"></div> <span>Others requested to be kept.</span></div>
+                    <div> <div class="blue-square"></div> <span>Call Number Range</span></div>
+                </div>
+            </div>
+            <div class="hright">
+            
+                <img id="logo" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/weed-logo.png" alt="Collection Weeding Project" />
+
+            </div>
+            <div class="clear"></div>
+        </div>
+    
+    
+    
+        <table id="weedlist-table" class="display cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Keep?</th>
+                    <th tal:repeat="item view/get_headings">${item}</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+                <tr class="weed-item" 
+                    tal:repeat="row view/get_content"  
+                    tal:attributes="data-id python:row[0];
+                                    data-keep python:row[1].count('@');
+                                    data-heading python:str(len(row[-1]) == 0).lower();
+                
+                ">
+                
+                    <td tal:condition="view/current_user_id">
+                        <input tal:condition="python: useremail not in row[1]" type="checkbox" name="form.weeding.item" tal:attributes="value python:row[0]"  />
+                        <input tal:condition="python: useremail in row[1]" checked="true" type="checkbox" name="form.weeding.item" tal:attributes="value python:row[0]"  />
+                    </td>
+                    
+                    <td tal:condition="not:view/current_user_id">
+                        <a class="login-to-vote"  href="${view/portal/absolute_url}/login?came_from=${context/absolute_url}"></a>
+                    </td>
+                    
+                    <td tal:repeat="item python:row">${item}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+            
+        <div id="bottom-nav">
+            <div class="hleft">
+                <div id="nav">
+                    <a href="${context/absolute_url}/../">&#10094; BACK</a>
+                    <span id="updated">Saved: <span>${view/get_updated_last}</span></span>
+                </div>
+            </div>
+            <div class="hright">
+            
+                <div id="options" tal:condition="view/is_editor">
+                    <div>Admin Options</div>
+                    <a href="${context/absolute_url}/edit">EDIT</a>
+                    <a href="${context/absolute_url}/weedlist_download">DOWNLOAD</a>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+    
+    
+    </div>
+
+
+
+
+</body>
+</html>

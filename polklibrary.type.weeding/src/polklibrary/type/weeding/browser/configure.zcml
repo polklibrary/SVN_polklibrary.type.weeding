@@ -1,0 +1,42 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="polklibrary.type.weeding">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="polklibrary.type.weeding.interfaces.IPolklibraryTypeWeedingLayer"
+      />
+
+    <browser:page
+        for="polklibrary.type.weeding.models.weedlist.IWeedList"
+        name="weedlist_view"
+        class=".weedlist_view.WeedListView"
+        permission="zope2.View"
+        />
+        
+    <browser:page
+        for="polklibrary.type.weeding.models.weedlist.IWeedList"
+        name="weedlist_update"
+        class=".weedlist_view.WeedListUpdate"
+        permission="zope2.View"
+        />
+        
+    <browser:page
+        for="polklibrary.type.weeding.models.weedlist.IWeedList"
+        name="weedlist_download"
+        class=".weeding_download.WeedListDownloadView"
+        permission="cmf.ModifyPortalContent"
+        />
+        
+  <!-- Publish static files -->
+  <plone:static
+      name="polklibrary.type.weeding"
+      type="plone"
+      directory="static"
+      />
+
+</configure>
