@@ -20,16 +20,22 @@ override_choices = SimpleVocabulary([
 class IWeedList(model.Schema):
 
     title = schema.TextLine(
-            title=u"Name",
+            title=u"Weeding Range/Title",
             required=True,
         )
         
-    body = RichText(
-            title=u"Information",
-            default_mime_type='text/structured',
+    backpath = schema.TextLine(
+            title=u"Back",
             required=False,
-            default=u"",
+            default=u"../"
         )
+        
+    # body = RichText(
+            # title=u"Information",
+            # default_mime_type='text/structured',
+            # required=False,
+            # default=u"",
+        # )
         
     file = NamedBlobFile(
             title=u"CSV Weed List File (see overwrite below)",  
