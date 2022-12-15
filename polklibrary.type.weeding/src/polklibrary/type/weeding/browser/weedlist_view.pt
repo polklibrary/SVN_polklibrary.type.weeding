@@ -182,7 +182,7 @@
         <div id="bottom-nav">
             <div class="hleft">
                 <div id="nav">
-                    <a href="${context/absolute_url}/${context/backpath}">&#10094; BACK</a>
+                    <a href="${context/absolute_url}/${context/backpath}">SAVE &amp; GO BACK</a>
                     <span id="updated">Saved: <span>${view/get_updated_last}</span></span>
                 </div>
             </div>
