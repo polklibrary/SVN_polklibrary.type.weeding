@@ -210,16 +210,6 @@ body, html {
 }
 
 
-/* normalized cn */
-#weedlist-table th:nth-child(15), #weedlist-table td:nth-child(15), .dataTables_scrollHead  table th:nth-child(15) {
-    display:none !important;
-}
-/* barcode */
-#weedlist-table th:nth-child(16), #weedlist-table td:nth-child(16), .dataTables_scrollHead  table th:nth-child(16) {
-    display:none !important;
-}
-
-
 #weedlist-table tr[data-keep] {
     background-color: #a5e8ff;
     transition: background-color 0.3s ease;
