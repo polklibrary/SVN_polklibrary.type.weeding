@@ -25,7 +25,7 @@ class IWeedList(model.Schema):
         )
         
     backpath = schema.TextLine(
-            title=u"Back",
+            title=u"Back Path",
             required=False,
             default=u"../"
         )

@@ -105,9 +105,10 @@
             });
             
             
-            
-            
-            
+            $('body *').on('click',function(){
+                if($('#weedlist-help').is(":visible"))
+                    $('#weedlist-help').fadeOut(250);
+            });
             
         });   
     </script>
@@ -115,6 +116,12 @@
 </head>
 <body>
 
+
+    <div id="weedlist-help">
+        <img class="weedlist-help-arrow" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/green-arrow.png" alt="Arrow" />
+        <div class="weedlist-help-title">Check to keep</div>
+        <div class="weedlist-help-more">Please check the box to request the item be kept in the collection. Marked items will be further reviewed.</div>
+    </div>
 
     <div id="weedlist-page" tal:define="userid view/current_user_id; useremail python:view.current_user_id + '@uwosh.edu'">
     

@@ -209,6 +209,16 @@ body, html {
 }
 
 
+/* normalized cn */
+#weedlist-table th:nth-child(15), #weedlist-table td:nth-child(15), .dataTables_scrollHead  table th:nth-child(15) {
+    display:none !important;
+}
+/* barcode */
+#weedlist-table th:nth-child(16), #weedlist-table td:nth-child(16), .dataTables_scrollHead  table th:nth-child(16) {
+    display:none !important;
+}
+
+
 #weedlist-table tr[data-keep] {
     background-color: #a5e8ff;
     transition: background-color 0.3s ease;
@@ -269,3 +279,41 @@ table.dataTable.stripe>tbody>tr.odd>*, table.dataTable.display>tbody>tr.odd>* {
 table.dataTable thead th, table.dataTable thead td {
     text-align: center;
 }
+
+
+#weedlist-help {
+    background-color: #00c029;
+    position: fixed;
+    top: 300px;
+    left: 230px;
+    width: 400px;
+    height: 190px;
+    z-index: 10;
+    border-radius: 10px;
+    box-shadow: 7px -5px #00a11f;
+}
+#weedlist-help .weedlist-help-arrow {
+    position: absolute;
+    transform: rotate(160deg);
+    width: 150px;
+    top: -15px;
+    left: -175px;
+    filter: brightness(0.8) contrast(1.2);
+}
+
+#weedlist-help .weedlist-help-title {
+    font-size: 35px;
+    color: white;
+    padding: 20px 20px 0 20px;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px black;
+}
+
+#weedlist-help .weedlist-help-more {
+    font-size: 18px;
+    color: white;
+    padding: 20px;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px black;
+}
+
