@@ -28,6 +28,38 @@ class WeedListView(BrowserView):
         data = json.loads(self.context.json_db)
         return data[0]
     
+    @property
+    def get_catalog_lookup_column_id(self):
+        lookup_column = self.context.catalog_lookup_column.lower().strip()
+        results = []
+        index = 2 # start on column 2, first is input
+        for heading in self.get_headings:
+            if heading.lower().strip() == lookup_column:
+                return index
+            index+=1
+        return -1
+    
+    
+    @property
+    def get_suppressed_columns_css(self):
+    
+        suppressed_columns = self.context.suppress_columns.split(',')
+        
+        cleaned_suppressed_columns = []
+        for sc in suppressed_columns:
+            cleaned_suppressed_columns.append(sc.lower().strip())
+        
+        results = []
+        index = 2 # start on column 2, first is input
+        for heading in self.get_headings:
+            if heading.lower().strip() in cleaned_suppressed_columns:
+                results.append(index)
+            index+=1
+        css = ""
+        for i in results:
+            css += ' #weedlist-table th:nth-child(' + str(i) + '), #weedlist-table td:nth-child(' + str(i) + '), .dataTables_scrollHead  table th:nth-child(' + str(i) + ') {display:none !important; } ' + '\n'
+
+        return css
     
     @property
     def is_editor(self):
@@ -39,8 +71,8 @@ class WeedListView(BrowserView):
     @property
     def get_content(self):
         data = json.loads(self.context.json_db)
+        
         return data[1:]
-    
     
     @property
     def current_user_id(self):

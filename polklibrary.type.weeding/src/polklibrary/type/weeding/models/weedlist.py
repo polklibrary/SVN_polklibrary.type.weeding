@@ -17,57 +17,33 @@ override_choices = SimpleVocabulary([
 ])
 
 
-css_default = """
-
-/* MARKER */
-#weedlist-table th:nth-child(2), #weedlist-table td:nth-child(2), .dataTables_scrollHead  table th:nth-child(2) {
-    display:none !important;
-}
-
-/* Users */
-#weedlist-table th:nth-child(3), #weedlist-table td:nth-child(3), .dataTables_scrollHead  table th:nth-child(3) {
-    display:none !important;
-}
-
-#weedlist-table th:nth-child(13), #weedlist-table td:nth-child(13), .dataTables_scrollHead  table th:nth-child(13) {
-    display:none !important;
-}
-
-#weedlist-table th:nth-child(14), #weedlist-table td:nth-child(14), .dataTables_scrollHead  table th:nth-child(14) {
-    display:none !important;
-}
-
-"""
-
-
-
-
 class IWeedList(model.Schema):
 
     title = schema.TextLine(
             title=u"Weeding Range/Title",
             required=True,
         )
-        
+
     backpath = schema.TextLine(
             title=u"Back Path",
             required=False,
             default=u"../"
         )
         
-    css = schema.Text(
-            title=u"CSS",
-            description=u"You must include the &lt;style&gt; elements",
+        
+        
+    suppress_columns = schema.TextLine(
+            title=u"Suppress Columns",
+            description=u"Put names of column you wish to suppress.  Comma separated.  (e.g. Author,Title,Notes)",
             required=False,
-            default=css_default,
+            default=u"ID,Users",
         )
         
-    # body = RichText(
-            # title=u"Information",
-            # default_mime_type='text/structured',
-            # required=False,
-            # default=u"",
-        # )
+    catalog_lookup_column = schema.TextLine(
+            title=u"Column name to lookup in catalog?",
+            required=False,
+            default=u"Permanent Call Number"
+        )
         
     file = NamedBlobFile(
             title=u"CSV Weed List File (see overwrite below)",  
@@ -75,7 +51,6 @@ class IWeedList(model.Schema):
             required=False
         )
         
-
     override_db = schema.Choice(
         title=u"Override the JSON Database?",
         source=override_choices,
@@ -87,7 +62,7 @@ class IWeedList(model.Schema):
             description=u"DO NOT EDIT!",
             required=False
         )
-
+        
 
 class AddForm(DefaultAddForm):
     portal_type = 'polklibrary.type.weeding.models.weedlist'

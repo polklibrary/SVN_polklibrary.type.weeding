@@ -8,9 +8,7 @@
     <title>Viewing ${context/Title}</title>
     <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/viewlist.css" />
-    <style>
-        ${context/css}
-    </style>
+    <style>${view/get_suppressed_columns_css}</style>
     <script type="text/javascript" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery.dataTables.min.js"></script>
     
@@ -26,6 +24,9 @@
             
             var user_id = "${view/current_user_id}";
             var user_email = "${view/current_user_id}@uwosh.edu";
+            var suppress_columns = "${context/suppress_columns}".toLowerCase().split(',');
+            var catalog_lookup_column_id = "${view/get_catalog_lookup_column_id}";
+            
         
             $('#weedlist-table').DataTable({
                 order: [[1, 'asc']],
@@ -33,6 +34,12 @@
                 scrollY: (window_height- tnav_height- bnav_height - adjustments_height) + 'px',
                 scrollCollapse: true,
                 paging: false,
+            });
+            
+            // anonymize
+            $('.weed-item td').each(function(){
+                if($(this).text().indexOf('@uwosh') != -1)
+                    $(this).text('*****');
             });
             
             // Keep or weed?
@@ -84,9 +91,21 @@
             
             // Search@UW Title Link
             $('tr[data-heading="false"] td:nth-child(4)').on('click', function(){
-                var cn = $(this).parent().find('td:nth-child(14)').text();
-                var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search?query=any,contains,"$$TARGET$$"&tab=default_tab&search_scope=DN_and_CI&vid=01UWI_OSH:OSH&lang=en&offset=0'
-                window.open(url.replace('$$TARGET$$',cn), '_blank');
+            
+                var lookup_id = $(this).parent().find('td:nth-child(' + catalog_lookup_column_id + ')').text().trim();
+                
+                // By Call Number
+                if (lookup_id.indexOf('.') >= 0 || lookup_id.indexOf(' ') >= 0){
+                    var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search?query=any,contains,"$$TARGET$$"&tab=default_tab&search_scope=DN_and_CI&vid=01UWI_OSH:OSH&lang=en&offset=0'
+                    window.open(url.replace('$$TARGET$$', lookup_id), '_blank');
+                }
+                
+                // By MMSID
+                else {
+                    var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma$$TARGET$$&context=L&vid=01UWI_OSH:OSH&lang=en&search_scope=DN_and_CI&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,$$TARGET$$&mode=basic'
+                    window.open(url.replace('$$TARGET$$', lookup_id), '_blank');
+                }
+                
             });
             
             // Make headings stretch on table
