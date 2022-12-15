@@ -8,6 +8,9 @@
     <title>Viewing ${context/Title}</title>
     <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/viewlist.css" />
+    <style>
+        ${context/css}
+    </style>
     <script type="text/javascript" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/jquery.dataTables.min.js"></script>
     

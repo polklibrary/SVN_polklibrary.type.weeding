@@ -17,6 +17,31 @@ override_choices = SimpleVocabulary([
 ])
 
 
+css_default = """
+
+/* MARKER */
+#weedlist-table th:nth-child(2), #weedlist-table td:nth-child(2), .dataTables_scrollHead  table th:nth-child(2) {
+    display:none !important;
+}
+
+/* Users */
+#weedlist-table th:nth-child(3), #weedlist-table td:nth-child(3), .dataTables_scrollHead  table th:nth-child(3) {
+    display:none !important;
+}
+
+#weedlist-table th:nth-child(13), #weedlist-table td:nth-child(13), .dataTables_scrollHead  table th:nth-child(13) {
+    display:none !important;
+}
+
+#weedlist-table th:nth-child(14), #weedlist-table td:nth-child(14), .dataTables_scrollHead  table th:nth-child(14) {
+    display:none !important;
+}
+
+"""
+
+
+
+
 class IWeedList(model.Schema):
 
     title = schema.TextLine(
@@ -28,6 +53,13 @@ class IWeedList(model.Schema):
             title=u"Back Path",
             required=False,
             default=u"../"
+        )
+        
+    css = schema.Text(
+            title=u"CSS",
+            description=u"You must include the &lt;style&gt; elements",
+            required=False,
+            default=css_default,
         )
         
     # body = RichText(
