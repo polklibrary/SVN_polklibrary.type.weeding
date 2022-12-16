@@ -120,8 +120,8 @@ body, html {
     border-radius: 2px;
     display: inline-block;
 }
-#legend .blue-square {
-    background-color: #258cdb;
+#legend .headings-square {
+    background-color: #363636;
     width: 20px;
     height: 20px;
     border-radius: 2px;
@@ -210,7 +210,7 @@ body, html {
     transition: background-color 0.3s ease;
 }
 #weedlist-table tr[data-heading="true"] {
-    background-color: #258cdb;
+    background-color: #363636;
     color: #efefef;
     font-size: 16px;
     font-weight: bold;

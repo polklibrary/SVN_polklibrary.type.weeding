@@ -152,7 +152,7 @@
                 <div id="legend">
                     <div> <div class="your-square">✓</div> <span>You requested to be kept.</span></div>
                     <div> <div class="others-square"></div> <span>Others requested to be kept.</span></div>
-                    <div> <div class="blue-square"></div> <span>Call Number Range</span></div>
+                    <div> <div class="headings-square"></div> <span>Call Number Range</span></div>
                 </div>
             </div>
             <div class="hright">
