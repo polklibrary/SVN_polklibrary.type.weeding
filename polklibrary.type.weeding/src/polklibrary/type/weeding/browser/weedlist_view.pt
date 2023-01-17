@@ -96,13 +96,13 @@
                 
                 // By Call Number
                 if (lookup_id.indexOf('.') >= 0 || lookup_id.indexOf(' ') >= 0){
-                    var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search?query=any,contains,"$$TARGET$$"&tab=default_tab&search_scope=DN_and_CI&vid=01UWI_OSH:OSH&lang=en&offset=0'
+                    var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/search?query=any,contains,"$$TARGET$$"&tab=default_tab&search_scope=MyInstitution&vid=01UWI_OSH:OSH&lang=en&offset=0'
                     window.open(url.replace('$$TARGET$$', lookup_id), '_blank');
                 }
                 
                 // By MMSID
                 else {
-                    var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma$$TARGET$$&context=L&vid=01UWI_OSH:OSH&lang=en&search_scope=DN_and_CI&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,$$TARGET$$&mode=basic'
+                    var url = 'https://wisconsin-uwosh.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma$$TARGET$$&context=L&vid=01UWI_OSH:OSH&lang=en&search_scope=MyInstitution&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,$$TARGET$$&mode=basic'
                     window.open(url.replace('$$TARGET$$', lookup_id), '_blank');
                 }
                 
