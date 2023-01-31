@@ -155,6 +155,13 @@
                     <div> <div class="headings-square"></div> <span>Call Number Range</span></div>
                 </div>
             </div>
+            
+            <div class="hleft">
+                <div id="phases">
+                    <img src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/phases.jpg" alt="Phases" />
+                </div>
+            </div>
+            
             <div class="hright">
             
                 <img id="logo" src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/weed-logo.png" alt="Collection Weeding Project" />

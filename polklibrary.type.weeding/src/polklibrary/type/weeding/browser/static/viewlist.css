@@ -88,20 +88,21 @@ body, html {
     display: flex;
     background-color: #eee;
     border: 1px solid #ddd;
-    margin: 20px;
-    width: 600px;
+    margin: 5px;
+    width: 250px;
+    flex-flow: column;
 }
 #legend > div {
     display: flex;
-    margin: 10px;
+    margin: 5px;
     flex-flow: row;
     justify-content: flex-start;
     align-items: center;
-    width: 200px;
+    width: 250px;
 }
 #legend > div > span {
     margin-left: 10px;
-    width: 150px;
+    width: 200px;
 }
 #legend .your-square {
     width: 20px;
@@ -128,9 +129,22 @@ body, html {
     display: inline-block;
 }
 
+#phases{
+    margin: 10px 10px 10px 30px;
+}
+
+#phases > img{
+    height: 135px;
+}
+
+
 #updated {
     color: #aaa;
     font-style: italic;
+}
+
+#weedlist-table_wrapper{
+    top: -40px;
 }
 
 .dataTables_scrollHead {
