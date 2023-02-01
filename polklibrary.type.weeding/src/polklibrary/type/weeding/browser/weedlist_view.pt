@@ -158,7 +158,7 @@
             
             <div class="hleft">
                 <div id="phases">
-                    <img src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/phases.jpg" alt="Phases" />
+                    <img src="${view/portal/absolute_url}/++plone++polklibrary.type.weeding/phases.png" alt="Phases" />
                 </div>
             </div>
             

@@ -91,14 +91,15 @@ body, html {
     margin: 5px;
     width: 250px;
     flex-flow: column;
+    justify-content: space-evenly;
+    height: 148px;
 }
 #legend > div {
     display: flex;
-    margin: 5px;
+    margin-left: 10px;
     flex-flow: row;
     justify-content: flex-start;
     align-items: center;
-    width: 250px;
 }
 #legend > div > span {
     margin-left: 10px;
@@ -130,7 +131,10 @@ body, html {
 }
 
 #phases{
-    margin: 10px 10px 10px 30px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    margin: 5px 5px 5px 10px;
+    padding: 5px;
 }
 
 #phases > img{
