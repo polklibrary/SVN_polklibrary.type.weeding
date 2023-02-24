@@ -314,3 +314,19 @@ table.dataTable thead th, table.dataTable thead td {
     text-shadow: 0px 0px 2px black;
 }
 
+
+
+/* Mobile stuff ===================================================== */
+@media (min-width: 100px) {
+    #logo { height: 40px; }
+    #phases>img  {height: 100px;}
+}
+@media (min-width: 1200px) {
+    #logo { height: 60px; }
+    #phases>img  {height: 100px;}
+
+}
+@media (min-width: 1480px) {
+    #logo { height: 80px; }
+    #phases>img  {height: 135px;}
+}
